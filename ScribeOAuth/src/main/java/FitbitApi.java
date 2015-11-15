@@ -11,6 +11,17 @@ import org.scribe.model.Token;
  * @Author Anthony Chang
  */
 public class FitbitApi extends DefaultApi10a {
+	private static String apiKey = "7f0f8201723b1e7960667563280e3a96";
+	private static String apiSecret = "820ee35bd16d38d44b76651559a1753c";
+	
+	public static String getApiKey(){
+		return apiKey;
+	}
+	
+	public static String getApiSecret(){
+		return apiSecret;
+	}
+	
 	public static final String BASE_URL = "http://api.fitbit.com/";
 
     /* Private string variable to hold the authorization URL using OAuth 2*/
