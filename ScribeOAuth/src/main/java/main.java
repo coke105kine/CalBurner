@@ -25,7 +25,7 @@ public class main {
 	            .apiKey("7f0f8201723b1e7960667563280e3a96") // These keys can be found in our chain email.
 	            .apiSecret("820ee35bd16d38d44b76651559a1753c")
 	            //.callback("http://calburner.weebly.com")        // Add a callback URL here if needed
-	            .scope("activity")
+	            //.scope("activity")
 	            .debug()
 	            .build();
 
@@ -42,7 +42,7 @@ public class main {
 	    System.out.println("Now go and authorize Scribe here:");
 	    System.out.println(authURL);
 	    System.out.println("And paste the verifier here");
-	    System.out.println("It's at the end of the url in your broswer.")
+	    System.out.println("It's at the end of the url in your broswer.");
 	    System.out.println(">>");
 	   
 	    
@@ -57,7 +57,7 @@ public class main {
 		
 		
 	    	System.out.println("test");
-	        OAuthRequest request = new OAuthRequest(Verb.POST, "http://calburner.weebly.com"); // Fill in blank with some URL used to get user profile data
+	        OAuthRequest request = new OAuthRequest(Verb.GET, "https://api.fitbit.com/1/user/-/profile.json"); // Fill in blank with some URL used to get user profile data
 	        service.signRequest(accessToken, request);
 	        Response response = request.send();
 	        System.out.println(response.getBody());
