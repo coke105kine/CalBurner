@@ -2,6 +2,10 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Scanner;
 
 import org.scribe.builder.ServiceBuilder;
@@ -61,6 +65,24 @@ public class main {
 	        service.signRequest(accessToken, request);
 	        Response response = request.send();
 	        System.out.println(response.getBody());
+	        String profile = response.getBody();
+	        
+	     //Parses through the response and grabs user ID.
+	        int indexID = profile.indexOf("encodedId");
+	        String profileSub = profile.substring(indexID+12);
+	        int endIndex = profileSub.indexOf("\"");
+	        String userID = profileSub.substring(0,endIndex);
+	        System.out.println("The user ID is " + userID);
+	        
+	        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	        Calendar cal = Calendar.getInstance();
+	        String date = dateFormat.format(cal.getTime());
+	        
+	     //Must grab user id...3NLTRX is Chanel's user id & must grab today's date.
+	        OAuthRequest request1 = new OAuthRequest(Verb.GET, "https://api.fitbit.com/1/user/" + userID + "/activities/date/" + date + ".json");
+	        service.signRequest(accessToken, request1);
+	        Response response1 = request1.send();
+	        System.out.println(response1.getBody());
 	        
 	}
 
