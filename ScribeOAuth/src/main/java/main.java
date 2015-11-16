@@ -3,14 +3,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
-<<<<<<< HEAD
+
 import java.net.URISyntaxException;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-=======
->>>>>>> branch 'master' of https://github.com/coke105kine/CalBurner.git
 import java.util.Scanner;
 
 import org.scribe.builder.ServiceBuilder;
@@ -30,12 +24,8 @@ public class main {
 		Scanner in = new Scanner(System.in);
 		
 		// Create the OAuthService object.
-<<<<<<< HEAD
-	    OAuthService service = new ServiceBuilder()
-=======
 
 		OAuthService service = new ServiceBuilder()
->>>>>>> branch 'master' of https://github.com/coke105kine/CalBurner.git
 	            .provider(FitbitApi.class)
 	            .apiKey(FitbitApi.getApiKey()) // These keys can be found in our chain email.
 	            .apiSecret(FitbitApi.getApiSecret())
@@ -68,7 +58,7 @@ public class main {
 	    Verifier v = new Verifier(in.nextLine());
 	    Token accessToken = service.getAccessToken(requestToken, v); // Request token from above	    
 	    
-<<<<<<< HEAD
+
 	    // Sign the request. Apparently this is where the first API call happens? o.o	
     	System.out.println("test");
         OAuthRequest request = new OAuthRequest(Verb.GET, "https://api.fitbit.com/1/user/-/profile.json"); 
@@ -76,51 +66,40 @@ public class main {
         Response response = request.send();
         System.out.println(response.getBody());
         String profile = response.getBody();
-	        
-	     //Parses through the response and grabs user ID.
-        int indexID = profile.indexOf("encodedId");
-        String profileSub = profile.substring(indexID+12);
-        int endIndex = profileSub.indexOf("\"");
-        String userID = profileSub.substring(0,endIndex);
-        System.out.println("The user ID is " + userID);
         
-        //Used to get date info. -- Why do we need this?
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar cal = Calendar.getInstance();
-        String date = dateFormat.format(cal.getTime());
         
-        //Grabs step goals
+        //Grabbing daily goals
         OAuthRequest request1 = new OAuthRequest(Verb.GET, "https://api.fitbit.com/1/user/-/activities/goals/daily.json");
         service.signRequest(accessToken, request1);
         Response response1 = request1.send();
-        System.out.println(response1.getBody());
+        String goals = response1.getBody();
         
-        // Grabbing step stats for the day
+        //Grabbing stats for the day
         OAuthRequest request2 = new OAuthRequest(Verb.GET, "https://api.fitbit.com/1/user/-/activities/tracker/steps/date/today/1d.json");
         service.signRequest(accessToken, request2);
         Response response2 = request2.send();
-        System.out.println(response2.getBody());
+        String activity  = response2.getBody();
         
-=======
-	    
-	    // Sign the request. Apparently this is where the first API call happens? o.o
-		
-		
-	    	System.out.println("test");
-	        OAuthRequest request = new OAuthRequest(Verb.GET, "https://api.fitbit.com/1/user/-/profile.json"); // Fill in blank with some URL used to get user profile data
-	        service.signRequest(accessToken, request);
-	        Response response = request.send();
-	        System.out.println(response.getBody());
-	        String profile = response.getBody();
+        //Finds steps goal within all goal data
+        int index1 = goals.indexOf("steps");
+        String sub1 = goals.substring(index1+7);
+        int index2 = sub1.indexOf("}");
+        String sub2 = sub1.substring(0, index2);
+        int stepGoal = Integer.parseInt(sub2);
+        
+        //Finds steps stats within all stats
+        index1 = activity.indexOf("value");
+        sub1 = activity.substring(index1+8);
+        index2 = sub1.indexOf("\"");
+        sub2 = sub1.substring(0, index2);
+        int stepStat = Integer.parseInt(sub2);
 
-	     //Finds the user's activity data.
-	        OAuthRequest dataRequest = new OAuthRequest(Verb.GET, "https://api.fitbit.com/1/user/-/activities/date/today.json");
-	        service.signRequest(accessToken, dataRequest);
-	        Response dataResponse = dataRequest.send();
-	        String data = dataResponse.getBody();
-	     
-	        System.out.println("User's data: ");
-	        System.out.println(data);
->>>>>>> branch 'master' of https://github.com/coke105kine/CalBurner.git
-	}
+        System.out.println("\nYour steps today are: " + stepStat);
+        System.out.println("Your steps goal is: " + stepGoal);
+        
+        int percentage = (stepStat/stepGoal)*100;
+        if (percentage > 100) percentage = 100;
+        System.out.println("You are " + percentage + "% to meeting your goal.");
+        
+	 }
 }
