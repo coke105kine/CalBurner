@@ -97,7 +97,8 @@ public class main {
         System.out.println("\nYour steps today are: " + stepStat);
         System.out.println("Your steps goal is: " + stepGoal);
         
-        int percentage = (stepStat/stepGoal)*100;
+        double doublePercentage = ((stepStat*1.0)/stepGoal)*100;
+        int percentage = (int) doublePercentage;
         if (percentage > 100) percentage = 100;
         System.out.println("You are " + percentage + "% to meeting your goal.");
         
