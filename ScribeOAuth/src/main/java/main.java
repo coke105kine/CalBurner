@@ -3,9 +3,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
-
 import java.net.URISyntaxException;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.model.OAuthRequest;
@@ -25,7 +26,7 @@ public class main {
 		
 		// Create the OAuthService object.
 
-		OAuthService service = new ServiceBuilder()
+		final OAuthService service = new ServiceBuilder()
 	            .provider(FitbitApi.class)
 	            .apiKey(FitbitApi.getApiKey()) // These keys can be found in our chain email.
 	            .apiSecret(FitbitApi.getApiSecret())
@@ -56,10 +57,10 @@ public class main {
 	    
 	    // Get the access token.    
 	    Verifier v = new Verifier(in.nextLine());
-	    Token accessToken = service.getAccessToken(requestToken, v); // Request token from above	    
+	    final Token accessToken = service.getAccessToken(requestToken, v); // Request token from above	    
 	    
 
-	    // Sign the request. Apparently this is where the first API call happens? o.o	
+	    // Sign the request.	
     	System.out.println("test");
         OAuthRequest request = new OAuthRequest(Verb.GET, "https://api.fitbit.com/1/user/-/profile.json"); 
         service.signRequest(accessToken, request);
@@ -67,8 +68,30 @@ public class main {
         System.out.println(response.getBody());
         String profile = response.getBody();
         
+        // Moved requests for data into a separate method so it can be reused for
+        // refreshing data hourly
+        // gatherData method can be found below the main method
         
-        //Grabbing daily goals
+        // This is used to have the app update fitbit data hourly
+        Timer timer = new Timer ();
+        TimerTask hourlyTask = new TimerTask () {
+            @Override
+            public void run () {
+                gatherData(accessToken, service);
+            }
+        };
+
+        // schedule the task to run starting now and then every hour
+        // timer.schedule (task, long delay, long period)
+        // delay = delay in milliseconds before task is executed
+        // period = time in milliseconds between successive task executions
+        timer.schedule (hourlyTask, 0l, 1000*60*60);
+        
+	 }
+
+
+	public static void gatherData(Token accessToken, OAuthService service){
+		//Grabbing daily goals
         OAuthRequest request1 = new OAuthRequest(Verb.GET, "https://api.fitbit.com/1/user/-/activities/goals/daily.json");
         service.signRequest(accessToken, request1);
         Response response1 = request1.send();
@@ -101,6 +124,5 @@ public class main {
         int percentage = (int) doublePercentage;
         if (percentage > 100) percentage = 100;
         System.out.println("You are " + percentage + "% to meeting your goal.");
-        
-	 }
+	}
 }
