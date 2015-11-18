@@ -1,6 +1,6 @@
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -72,24 +72,53 @@ public class main {
         // refreshing data hourly
         // gatherData method can be found below the main method
         
-        // This is used to have the app update fitbit data hourly
-        Timer timer = new Timer ();
+        
+        // This is used to have the app update fitbit data periodically (hourly)
+        final Timer timer = new Timer ();
         TimerTask hourlyTask = new TimerTask () {
-            @Override
-            public void run () {
-                gatherData(accessToken, service);
-            }
-        };
+        	public int countRuns = 0; // countRuns keeps tracks of hourly update loop
+        	@Override
+            public void run () { // any code in this method will be performed periodically
+            	countRuns++;
+                if (countRuns >= 6) { // currently, code will update data 6 times
+                    timer.cancel();
+                    timer.purge();
+                    return;
+                }
+                
+                
+                gatherData(accessToken, service); // here's the data call to Fitbit
+ 
+                // The try/catch is currently being used as a test for period data updates
+                // It will create a text file named "overnightTest.txt"
+                // It just appends the "test", every time data updates
+                
+                try
+                {
+                    String filename= "overnightTest.txt";
+                    FileWriter fw = new FileWriter(filename,true); //the true will append the new data
+                    fw.write("test \n");//appends the string to the file
+                    fw.close();
+                }
+                catch(IOException ioe)
+                {
+                    System.err.println("IOException: " + ioe.getMessage());
+                }
+            }   
+        }; //ends TimerTask hourlyTask       
 
         // schedule the task to run starting now and then every hour
         // timer.schedule (task, long delay, long period)
         // delay = delay in milliseconds before task is executed
         // period = time in milliseconds between successive task executions
-        timer.schedule (hourlyTask, 0l, 1000*60*60);
-        
+        	timer.schedule (hourlyTask, 0l, 1000*5); //period should be 1000*60*60 to call hourly
+ 
 	 }
 
-
+	// This method uses the accessToken to gather data from Fitbit
+	// It also parses through input received and prints
+	// the step stats and goals
+	// It calculates goal percentage and outputs to screen
 	public static void gatherData(Token accessToken, OAuthService service){
 		//Grabbing daily goals
         OAuthRequest request1 = new OAuthRequest(Verb.GET, "https://api.fitbit.com/1/user/-/activities/goals/daily.json");
