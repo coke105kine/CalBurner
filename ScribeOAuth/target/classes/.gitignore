@@ -3,6 +3,7 @@
 /CardLayout.class
 /CardLayout_Interface.class
 /testImage.class
+<<<<<<< HEAD
 /filesNotInUseAnymore/
 /FitbitSetup$1.class
 /FitbitSetup$2.class
@@ -11,3 +12,9 @@
 /HomePage$1.class
 /HomePage$2.class
 /HomePage.class
+=======
+/.DS_Store
+/logo.jpg
+/logo.png
+/logo1.png
+>>>>>>> branch 'master' of https://github.com/coke105kine/CalBurner.git
