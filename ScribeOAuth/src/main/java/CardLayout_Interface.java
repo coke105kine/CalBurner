@@ -147,8 +147,8 @@ public class CardLayout_Interface implements ActionListener {
 
 		// Fitbit Setup Buttons
 		btnBack.setBackground(SystemColor.control);
-		Image backIcon = new ImageIcon("/backIcon_50x50.png").getImage();
-		btnBack.setIcon(new ImageIcon(backIcon));
+		// Image backIcon = new ImageIcon("/backIcon_50x50.png").getImage();
+		// btnBack.setIcon(new ImageIcon(backIcon));
 		btnBack.setBounds(0, 0, 67, 58);
 		fitbitSetupCard.add(btnBack);
 		btnBack.addActionListener(AL);
