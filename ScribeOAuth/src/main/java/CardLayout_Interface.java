@@ -6,7 +6,9 @@ import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -78,38 +80,45 @@ public class CardLayout_Interface implements ActionListener {
 		homeCard.setLayout(null); // set card layout
 		homeCard.setBorder(new EmptyBorder(5, 5, 5, 5));
 
+		// * homeCard logo *
+		JLabel label = new JLabel("");
+		Image logo = new ImageIcon(main.class.getResource("/logo1.png")).getImage();
+		label.setIcon(new ImageIcon(logo));
+		label.setBounds(135, 6, 174, 148);
+		homeCard.add(label);
+		
 		// * homeCard Buttons *
 		btnAccountSettings.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnAccountSettings.setBounds(135, 113, 178, 61);
+		btnAccountSettings.setBounds(135, 166, 178, 61);
 		homeCard.add(btnAccountSettings);
 		btnAccountSettings.addActionListener(AL);
 
 		btnFitnessGoals.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnFitnessGoals.setBounds(135, 185, 178, 61);
+		btnFitnessGoals.setBounds(135, 239, 178, 61);
 		homeCard.add(btnFitnessGoals);
 		btnFitnessGoals.addActionListener(AL);
 		
 		btnViewProgress.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnViewProgress.setBounds(135, 257, 178, 61);
+		btnViewProgress.setBounds(135, 312, 178, 61);
 		homeCard.add(btnViewProgress);
 		btnViewProgress.addActionListener(AL);
 		
 		JLabel lblAmbientDevice = new JLabel("Ambient Device");
 		lblAmbientDevice.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAmbientDevice.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblAmbientDevice.setBounds(135, 346, 178, 29);
+		lblAmbientDevice.setBounds(135, 385, 178, 29);
 		homeCard.add(lblAmbientDevice);
 		
 		// Need to figure out how to add action to the radio button!!! ***
 		JRadioButton rdbtnOn = new JRadioButton("On");
 		rdbtnOn.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnOn.setSelected(true);
-		rdbtnOn.setBounds(87, 382, 86, 23);
+		rdbtnOn.setBounds(87, 409, 86, 23);
 		homeCard.add(rdbtnOn);
 
 		JRadioButton rdbtnOff = new JRadioButton("Off");
 		rdbtnOff.setHorizontalAlignment(SwingConstants.CENTER);
-		rdbtnOff.setBounds(260, 382, 86, 23);
+		rdbtnOff.setBounds(260, 409, 86, 23);
 		homeCard.add(rdbtnOff);
 
 		ButtonGroup bG = new ButtonGroup();
@@ -145,9 +154,10 @@ public class CardLayout_Interface implements ActionListener {
 		panel.setBounds(66, 0, 368, 58);
 		fitbitSetupCard.add(panel);
 
+
 		// Fitbit Setup Buttons
 		btnBack.setBackground(SystemColor.control);
-		Image backIcon = new ImageIcon("/backIcon_50x50.png").getImage();
+		Image backIcon = new ImageIcon(main.class.getResource("/backIcon_50x50.png")).getImage();
 		btnBack.setIcon(new ImageIcon(backIcon));
 		btnBack.setBounds(0, 0, 67, 58);
 		fitbitSetupCard.add(btnBack);
@@ -156,6 +166,7 @@ public class CardLayout_Interface implements ActionListener {
 		// Add cards to panel
 		cardLayout.show(card, "homeCard"); // set frm parameters
 		card.add("homeCard", homeCard);
+		
 		card.add("fitbitSetupCard", fitbitSetupCard);
 		contentPane.add(card); // set the contentPane to add static card panel
 
