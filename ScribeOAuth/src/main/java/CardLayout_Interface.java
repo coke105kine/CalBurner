@@ -7,6 +7,8 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
@@ -17,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
@@ -51,7 +55,20 @@ public class CardLayout_Interface implements ActionListener {
 		}
 		// fitbitSetupCard buttons
 		if (source == btnFitbitSetup){
-			// run main.java code
+			/* This try/catch will run the data driver; data driver needs work
+			try {
+				DataDriver.grabData();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			*/
+			
+			// Change to fitbitVerification Card
+			cardLayout.show(card, "fitbitVerificationCard");
 		}
 		// general buttons
 		if (source == btnBack) {
@@ -130,9 +147,19 @@ public class CardLayout_Interface implements ActionListener {
 		JPanel fitbitSetupCard = new JPanel();
 		fitbitSetupCard.setLayout(null); // set card layout
 		fitbitSetupCard.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		// * fitbitSetupCard's buttons *
 		btnFitbitSetup.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnFitbitSetup.setBounds(74, 234, 288, 50);
 		fitbitSetupCard.add(btnFitbitSetup);
+		btnFitbitSetup.addActionListener(AL);
+		
+		btnBack.setBackground(SystemColor.control);
+		Image backIcon = new ImageIcon(main.class.getResource("/backIcon_50x50.png")).getImage();
+		btnBack.setIcon(new ImageIcon(backIcon));
+		btnBack.setBounds(0, 0, 67, 58);
+		fitbitSetupCard.add(btnBack);
+		btnBack.addActionListener(AL);
 
 		JTextArea textArea = new JTextArea(
 				"Clicking this button will open your web browser.\n"
@@ -155,19 +182,43 @@ public class CardLayout_Interface implements ActionListener {
 		fitbitSetupCard.add(panel);
 
 
-		// Fitbit Setup Buttons
-		btnBack.setBackground(SystemColor.control);
-		Image backIcon = new ImageIcon(main.class.getResource("/backIcon_50x50.png")).getImage();
-		btnBack.setIcon(new ImageIcon(backIcon));
-		btnBack.setBounds(0, 0, 67, 58);
-		fitbitSetupCard.add(btnBack);
-		btnBack.addActionListener(AL);
-
-		// Add cards to panel
-		cardLayout.show(card, "homeCard"); // set frm parameters
-		card.add("homeCard", homeCard);
 		
+		
+		
+		// *** Create fitbitVerification Card ***
+		JPanel fitbitVerificationCard = new JPanel(); // make cardHome JPanel
+		fitbitVerificationCard.setLayout(null);
+		fitbitVerificationCard.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		JTextField textField = new JTextField();
+		textField.setToolTipText("Past verification code here");
+		textField.setBounds(79, 278, 291, 37);
+		fitbitVerificationCard.add(textField);
+		textField.setColumns(10);
+		
+		// ***THIS TEXTPANE SHOULD PROBALBY HAVE CENTERED TEXT. NEED TO FIGURE OUT HOW!
+		JTextPane txtpnVerInstructions = new JTextPane();
+		txtpnVerInstructions.setBackground(SystemColor.control);
+		txtpnVerInstructions.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		txtpnVerInstructions.setText("You will be directed to the Fitbit authorization page"
+				+ " in your web browser. Login and obtain your verification code."
+				+ " Copy-and-paste your code into the text field below.");
+		txtpnVerInstructions.setBounds(79, 158, 291, 112);
+		fitbitVerificationCard.add(txtpnVerInstructions);
+		
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnSubmit.setBounds(136, 334, 178, 61);
+		fitbitVerificationCard.add(btnSubmit);
+				
+		
+
+		
+		cardLayout.show(card, "homeCard"); // show first card (home)
+		// Add cards to panel
+		card.add("homeCard", homeCard);
 		card.add("fitbitSetupCard", fitbitSetupCard);
+		card.add("fitbitVerificationCard", fitbitVerificationCard);		
 		contentPane.add(card); // set the contentPane to add static card panel
 
 		// JFrame settings
