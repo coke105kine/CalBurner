@@ -32,7 +32,7 @@ public class CardLayout_Interface implements ActionListener {
 	// CREATE STATIC BUTTONS HERE
 	// homeCard buttons
 	static JButton btnAccountSettings = new JButton("Account Settings");
-	static JButton btnFitnessGoals = new JButton("Fitness Goals");
+	static JButton btnAmbientInterface = new JButton("Ambient Interface");
 	static JButton btnViewProgress = new JButton("View Progress");
 	// fitbitSetupCard buttons
 	static JButton btnFitbitSetup = new JButton("Set up your Fitbit device");
@@ -47,8 +47,8 @@ public class CardLayout_Interface implements ActionListener {
 		if (source == btnAccountSettings) {
 			cardLayout.show(card, "fitbitSetupCard");
 		}
-		if (source == btnFitnessGoals){
-			//put code to open fitnessGoals card once it's created
+		if (source == btnAmbientInterface){
+			cardLayout.show(card, "ambientInterfaceCard");
 		}
 		if (source == btnViewProgress){
 			// put code to open viewProgress card once it's created
@@ -110,10 +110,10 @@ public class CardLayout_Interface implements ActionListener {
 		homeCard.add(btnAccountSettings);
 		btnAccountSettings.addActionListener(AL);
 
-		btnFitnessGoals.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnFitnessGoals.setBounds(135, 239, 178, 61);
-		homeCard.add(btnFitnessGoals);
-		btnFitnessGoals.addActionListener(AL);
+		btnAmbientInterface.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnAmbientInterface.setBounds(135, 239, 178, 61);
+		homeCard.add(btnAmbientInterface);
+		btnAmbientInterface.addActionListener(AL);
 		
 		btnViewProgress.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnViewProgress.setBounds(135, 312, 178, 61);
@@ -180,8 +180,6 @@ public class CardLayout_Interface implements ActionListener {
 		panel.setBackground(Color.GRAY);
 		panel.setBounds(66, 0, 368, 58);
 		fitbitSetupCard.add(panel);
-
-
 		
 		
 		
@@ -210,15 +208,29 @@ public class CardLayout_Interface implements ActionListener {
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnSubmit.setBounds(136, 334, 178, 61);
 		fitbitVerificationCard.add(btnSubmit);
-				
+		
+		
+		// *** Create AmbientInterface Card ***
+		JPanel ambientInterfaceCard = new JPanel(); // make cardHome JPanel
+		ambientInterfaceCard.setLayout(null); // set card layout
+		ambientInterfaceCard.setBorder(new EmptyBorder(5, 5, 5, 5));
+		String ambientImage = "";
+		ambientImage = AmbientInterface.runInterface(90);
+		// * ambient image *
+		JLabel label2 = new JLabel("");
+		Image logo2 = new ImageIcon(main.class.getResource(ambientImage)).getImage();
+		label2.setIcon(new ImageIcon(logo2));
+		label2.setBounds(135, 6, 174, 148);
+		ambientInterfaceCard.add(label2);
 		
 
-		
-		cardLayout.show(card, "homeCard"); // show first card (home)
 		// Add cards to panel
+		cardLayout.show(card, "homeCard"); // set frm parameters
 		card.add("homeCard", homeCard);
 		card.add("fitbitSetupCard", fitbitSetupCard);
 		card.add("fitbitVerificationCard", fitbitVerificationCard);		
+		card.add("ambientInterfaceCard", ambientInterfaceCard);
+
 		contentPane.add(card); // set the contentPane to add static card panel
 
 		// JFrame settings
