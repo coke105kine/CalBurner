@@ -221,7 +221,7 @@ public class CardLayout_Interface implements ActionListener {
 		// * ambient image *
 		JLabel label2 = new JLabel("");
 		//Adjust so that it selects the image that corresponds to how much of goal is completed. 
-		Image logo2 = new ImageIcon(main.class.getResource("/fire/fire9.jpeg")).getImage();
+		Image logo2 = new ImageIcon(main.class.getResource("/fire/fire100.jpeg")).getImage();
 		label2.setVerticalAlignment(JLabel.BOTTOM);
 		label2.setHorizontalAlignment(JLabel.CENTER);
 		label2.setIcon(new ImageIcon(logo2));
