@@ -215,7 +215,7 @@ public class CardLayout_Interface implements ActionListener {
 		ambientInterfaceCard.setLayout(null); // set card layout
 		ambientInterfaceCard.setBorder(new EmptyBorder(5, 5, 5, 5));
 		String ambientImage = "";
-		ambientImage = AmbientInterface.runInterface(90);
+		ambientImage = AmbientInterface.runInterface(99);
 		// * ambient image *
 		JLabel label2 = new JLabel("");
 		Image logo2 = new ImageIcon(main.class.getResource(ambientImage)).getImage();
