@@ -1,5 +1,6 @@
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -214,13 +215,17 @@ public class CardLayout_Interface implements ActionListener {
 		JPanel ambientInterfaceCard = new JPanel(); // make cardHome JPanel
 		ambientInterfaceCard.setLayout(null); // set card layout
 		ambientInterfaceCard.setBorder(new EmptyBorder(5, 5, 5, 5));
+		ambientInterfaceCard.setBackground(Color.black);
 		String ambientImage = "";
-		ambientImage = AmbientInterface.runInterface(90);
+		//ambientImage = AmbientInterface.runInterface(90);
 		// * ambient image *
 		JLabel label2 = new JLabel("");
-		Image logo2 = new ImageIcon(main.class.getResource(ambientImage)).getImage();
+		//Adjust so that it selects the image that corresponds to how much of goal is completed. 
+		Image logo2 = new ImageIcon(main.class.getResource("/fire/fire9.jpeg")).getImage();
+		label2.setVerticalAlignment(JLabel.BOTTOM);
+		label2.setHorizontalAlignment(JLabel.CENTER);
 		label2.setIcon(new ImageIcon(logo2));
-		label2.setBounds(135, 6, 174, 148);
+		label2.setBounds(0, 0, 450, 469);
 		ambientInterfaceCard.add(label2);
 		
 
