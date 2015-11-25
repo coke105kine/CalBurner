@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Timer;
 
 import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
@@ -28,7 +29,13 @@ import javax.swing.border.EmptyBorder;
 public class CardLayout_Interface implements ActionListener {
 	static CardLayout cardLayout; // make static CardLayout
 	static JPanel card = new JPanel(); // make a static CardLayout
+	public static String verCodeInput = "";
 
+	// textfield for fitbitVerificationPage
+	static JTextField textFieldVerification = new JTextField();
+	
+	// String used for ambientImage
+	public static String percentage = "100";
 	
 	// CREATE STATIC BUTTONS HERE
 	// homeCard buttons
@@ -37,6 +44,8 @@ public class CardLayout_Interface implements ActionListener {
 	static JButton btnViewProgress = new JButton("View Progress");
 	// fitbitSetupCard buttons
 	static JButton btnFitbitSetup = new JButton("Set up your Fitbit device");
+	// fitbitVerificationCard buttons
+	static JButton btnSubmit = new JButton("Submit");
 	// general buttons
 	static JButton btnBack = new JButton("");
 	
@@ -56,9 +65,9 @@ public class CardLayout_Interface implements ActionListener {
 		}
 		// fitbitSetupCard buttons
 		if (source == btnFitbitSetup){
-			/* This try/catch will run the data driver; data driver needs work
+			//This try/catch will run the data driver; data driver needs work
 			try {
-				DataDriver.grabData();
+				DataDriver.startGrabData();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -66,17 +75,31 @@ public class CardLayout_Interface implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			*/
+			
 			
 			// Change to fitbitVerification Card
 			cardLayout.show(card, "fitbitVerificationCard");
+		}
+		// fitbitVerificationCard buttons
+		if (source == btnSubmit){
+			verCodeInput = textFieldVerification.getText();
+			DataDriver.sendVerification(verCodeInput);
+			cardLayout.show(card, "homeCard");
 		}
 		// general buttons
 		if (source == btnBack) {
 			cardLayout.show(card, "homeCard");
 		}
 	}
-
+	/*
+	Timer SimpleTimer = new Timer(1000, new ActionListener(){
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+	        jLabel2.setText("test");
+	    }
+	});
+	*/
+	
 	public static void main(String[] args) {
 		JFrame frm = new JFrame(); // make new frame
 		JPanel contentPane = (JPanel) frm.getContentPane(); // new conentPane
@@ -189,11 +212,11 @@ public class CardLayout_Interface implements ActionListener {
 		fitbitVerificationCard.setLayout(null);
 		fitbitVerificationCard.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
-		JTextField textField = new JTextField();
-		textField.setToolTipText("Past verification code here");
-		textField.setBounds(79, 278, 291, 37);
-		fitbitVerificationCard.add(textField);
-		textField.setColumns(10);
+		// initialize texfield before main so that it can be used outside of main
+		textFieldVerification.setToolTipText("Past verification code here");
+		textFieldVerification.setBounds(79, 278, 291, 37);
+		fitbitVerificationCard.add(textFieldVerification);
+		textFieldVerification.setColumns(10);
 		
 		// ***THIS TEXTPANE SHOULD PROBALBY HAVE CENTERED TEXT. NEED TO FIGURE OUT HOW!
 		JTextPane txtpnVerInstructions = new JTextPane();
@@ -205,10 +228,10 @@ public class CardLayout_Interface implements ActionListener {
 		txtpnVerInstructions.setBounds(79, 158, 291, 112);
 		fitbitVerificationCard.add(txtpnVerInstructions);
 		
-		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnSubmit.setBounds(136, 334, 178, 61);
 		fitbitVerificationCard.add(btnSubmit);
+		btnSubmit.addActionListener(AL);
 		
 		
 		// *** Create AmbientInterface Card ***
@@ -216,13 +239,17 @@ public class CardLayout_Interface implements ActionListener {
 		ambientInterfaceCard.setLayout(null); // set card layout
 		ambientInterfaceCard.setBorder(new EmptyBorder(5, 5, 5, 5));
 		ambientInterfaceCard.setBackground(Color.black);
-		String ambientImage = "";
 		
+
 		//ambientImage = AmbientInterface.runInterface(90);
 		// * ambient image *
 		JLabel label2 = new JLabel("");
 		//Adjust so that it selects the image that corresponds to how much of goal is completed. 
-		Image logo2 = new ImageIcon(main.class.getResource("/fire/fire100.jpeg")).getImage();
+		
+		
+		String ambientImage = "/fire/fire" + percentage + ".jpeg";
+		System.out.println(ambientImage);
+		Image logo2 = new ImageIcon(main.class.getResource(ambientImage)).getImage();
 		label2.setVerticalAlignment(JLabel.BOTTOM);
 		label2.setHorizontalAlignment(JLabel.CENTER);
 		label2.setIcon(new ImageIcon(logo2));
