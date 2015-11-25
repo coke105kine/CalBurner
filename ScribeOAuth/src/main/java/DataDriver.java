@@ -172,11 +172,11 @@ public class DataDriver {
 	        if (percentage > 100) percentage = 100;
 	        System.out.println("You are " + percentage + "% to meeting your goal.");
 	        
-	        p -= 20;
+	        p = 100 - percentage;
 	         
 	        CardLayout_Interface.percentage = Integer.toString(p);
 	        		//Integer.toString(percentage);
-	        System.out.println("P =" + p);
+	        System.out.println("P = " + p);
 	        
 	        
 	}
