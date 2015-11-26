@@ -48,6 +48,7 @@ public class CardLayout_Interface implements ActionListener {
 	static JButton btnSubmit = new JButton("Submit");
 	// general buttons
 	static JButton btnBack = new JButton("");
+	static JButton btnBack1 = new JButton("");
 	
 	
 	// actionPerformed handles actions for button clicks
@@ -89,6 +90,9 @@ public class CardLayout_Interface implements ActionListener {
 		// general buttons
 		if (source == btnBack) {
 			cardLayout.show(card, "homeCard");
+		}
+		if (source == btnBack1) {
+			cardLayout.show(card, "fitbitSetupCard");
 		}
 	}
 	/*
@@ -211,6 +215,13 @@ public class CardLayout_Interface implements ActionListener {
 		JPanel fitbitVerificationCard = new JPanel(); // make cardHome JPanel
 		fitbitVerificationCard.setLayout(null);
 		fitbitVerificationCard.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		btnBack1.setBackground(SystemColor.control);
+		Image backIcon1 = new ImageIcon(main.class.getResource("/backIcon_50x50.png")).getImage();
+		btnBack1.setIcon(new ImageIcon(backIcon1));
+		btnBack1.setBounds(0, 0, 67, 58);
+		fitbitVerificationCard.add(btnBack1);
+		btnBack1.addActionListener(AL);
 		
 		// initialize texfield before main so that it can be used outside of main
 		textFieldVerification.setToolTipText("Past verification code here");
