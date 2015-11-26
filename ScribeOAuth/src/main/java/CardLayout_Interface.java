@@ -244,6 +244,17 @@ public class CardLayout_Interface implements ActionListener {
 		fitbitVerificationCard.add(btnSubmit);
 		btnSubmit.addActionListener(AL);
 		
+		JLabel lblFit1 = new JLabel("Fitbit Verification");
+		lblFit1.setBackground(Color.WHITE);
+		lblFit1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblFit1.setBounds(74, 11, 120, 35);
+		fitbitVerificationCard.add(lblFit1);
+
+		JPanel panel1 = new JPanel();
+		panel1.setBackground(Color.GRAY);
+		panel1.setBounds(66, 0, 368, 58);
+		fitbitVerificationCard.add(panel1);
+		
 		
 		// *** Create AmbientInterface Card ***
 		JPanel ambientInterfaceCard = new JPanel(); // make cardHome JPanel
