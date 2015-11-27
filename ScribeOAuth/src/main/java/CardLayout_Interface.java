@@ -49,6 +49,7 @@ public class CardLayout_Interface implements ActionListener {
 	// general buttons
 	static JButton btnBack = new JButton("");
 	static JButton btnBack1 = new JButton("");
+	static JButton btnBack2 = new JButton("");
 	
 	
 	// actionPerformed handles actions for button clicks
@@ -93,6 +94,9 @@ public class CardLayout_Interface implements ActionListener {
 		}
 		if (source == btnBack1) {
 			cardLayout.show(card, "fitbitSetupCard");
+		}
+		if (source == btnBack2) {
+			cardLayout.show(card, "homeCard");
 		}
 	}
 	/*
@@ -278,6 +282,13 @@ public class CardLayout_Interface implements ActionListener {
 		label2.setBounds(0, 0, 450, 469);
 		ambientInterfaceCard.add(label2);
 		
+		// Back button for Ambience Interface
+		btnBack2.setBackground(SystemColor.control);
+		Image backIcon2 = new ImageIcon(main.class.getResource("/backIcon_50x50.png")).getImage();
+		btnBack2.setIcon(new ImageIcon(backIcon2));
+		btnBack2.setBounds(0, 0, 67, 58);
+		ambientInterfaceCard.add(btnBack2);
+		btnBack2.addActionListener(AL);
 
 		// Add cards to panel
 		cardLayout.show(card, "homeCard"); // set frm parameters
