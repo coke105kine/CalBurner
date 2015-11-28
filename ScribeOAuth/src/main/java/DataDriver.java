@@ -177,12 +177,14 @@ public class DataDriver {
 	        
 	        
 	        // this whole part with variable p is just used for testing
+	        // comment out from "p-=" to "return Integer.toString(p);" if you want to see real function
 	        // since fitbit data does not change very often
 	        p -= 5;
+
 	         
 	        CardLayout_Interface.percentage = Integer.toString(p);
 	        		//Integer.toString(percentage);
-	        System.out.println("P =" + p);
+	        System.out.println("P = " + p);
 	        
 	        return Integer.toString(p); //used for testing
 	        

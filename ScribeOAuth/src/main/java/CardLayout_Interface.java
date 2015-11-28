@@ -55,6 +55,8 @@ public class CardLayout_Interface implements ActionListener {
 	static JButton btnFitbitAccountSetup2 = new JButton("Fitbit Account Setup");
 	// general buttons
 	static JButton btnBack = new JButton("");
+	static JButton btnBack1 = new JButton("");
+	static JButton btnBack2 = new JButton("");
 	
 	
 	// actionPerformed handles actions for button clicks
@@ -106,6 +108,12 @@ public class CardLayout_Interface implements ActionListener {
 		}
 		// general buttons
 		if (source == btnBack) {
+			cardLayout.show(card, "homeCard");
+		}
+		if (source == btnBack1) {
+			cardLayout.show(card, "fitbitSetupCard");
+		}
+		if (source == btnBack2) {
 			cardLayout.show(card, "homeCard");
 		}
 	}
@@ -249,6 +257,13 @@ public class CardLayout_Interface implements ActionListener {
 		fitbitVerificationCard.setLayout(null);
 		fitbitVerificationCard.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
+		btnBack1.setBackground(SystemColor.control);
+		Image backIcon1 = new ImageIcon(main.class.getResource("/backIcon_50x50.png")).getImage();
+		btnBack1.setIcon(new ImageIcon(backIcon1));
+		btnBack1.setBounds(0, 0, 67, 58);
+		fitbitVerificationCard.add(btnBack1);
+		btnBack1.addActionListener(AL);
+		
 		// initialize texfield before main so that it can be used outside of main
 		textFieldVerification.setToolTipText("Past verification code here");
 		textFieldVerification.setBounds(79, 278, 291, 37);
@@ -269,6 +284,17 @@ public class CardLayout_Interface implements ActionListener {
 		btnSubmit.setBounds(136, 334, 178, 61);
 		fitbitVerificationCard.add(btnSubmit);
 		btnSubmit.addActionListener(AL);
+		
+		JLabel lblFit1 = new JLabel("Fitbit Verification");
+		lblFit1.setBackground(Color.WHITE);
+		lblFit1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblFit1.setBounds(74, 11, 120, 35);
+		fitbitVerificationCard.add(lblFit1);
+
+		JPanel panel1 = new JPanel();
+		panel1.setBackground(Color.GRAY);
+		panel1.setBounds(66, 0, 368, 58);
+		fitbitVerificationCard.add(panel1);
 		
 		
 		// *** Create AmbientInterface Card ***
@@ -312,6 +338,13 @@ public class CardLayout_Interface implements ActionListener {
 		
 	          
 		
+		// Back button for Ambience Interface
+		btnBack2.setBackground(SystemColor.control);
+		Image backIcon2 = new ImageIcon(main.class.getResource("/backIcon_50x50.png")).getImage();
+		btnBack2.setIcon(new ImageIcon(backIcon2));
+		btnBack2.setBounds(0, 0, 67, 58);
+		ambientInterfaceCard.add(btnBack2);
+		btnBack2.addActionListener(AL);
 
 		// Add cards to panel
 		cardLayout.show(card, "homeCard"); // set frm parameters
