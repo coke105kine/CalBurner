@@ -8,9 +8,11 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
@@ -30,22 +32,27 @@ public class CardLayout_Interface implements ActionListener {
 	static CardLayout cardLayout; // make static CardLayout
 	static JPanel card = new JPanel(); // make a static CardLayout
 	public static String verCodeInput = "";
+	public static boolean ambientSelected = false;
+	public static boolean fitbitIsSetup = false;
 
 	// textfield for fitbitVerificationPage
 	static JTextField textFieldVerification = new JTextField();
 	
 	// String used for ambientImage
-	public static String percentage = "100";
+	public static String percentage = "";
+	public static JLabel label2 = new JLabel("");
 	
 	// CREATE STATIC BUTTONS HERE
 	// homeCard buttons
-	static JButton btnAccountSettings = new JButton("Account Settings");
+	static JButton btnFitbitAccountSetup = new JButton("Fitbit Account Setup");
 	static JButton btnAmbientInterface = new JButton("Ambient Interface");
-	static JButton btnViewProgress = new JButton("View Progress");
+	static JButton btnQuit = new JButton("Quit");
 	// fitbitSetupCard buttons
 	static JButton btnFitbitSetup = new JButton("Set up your Fitbit device");
 	// fitbitVerificationCard buttons
 	static JButton btnSubmit = new JButton("Submit");
+	// setupFitbitFirst Card's buttons
+	static JButton btnFitbitAccountSetup2 = new JButton("Fitbit Account Setup");
 	// general buttons
 	static JButton btnBack = new JButton("");
 	
@@ -54,15 +61,23 @@ public class CardLayout_Interface implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		// homeCard buttons
-		if (source == btnAccountSettings) {
+		if (source == btnFitbitAccountSetup) {
 			cardLayout.show(card, "fitbitSetupCard");
 		}
 		if (source == btnAmbientInterface){
-			cardLayout.show(card, "ambientInterfaceCard");
+			if (!fitbitIsSetup){
+				cardLayout.show(card, "setupFitbitFirst");
+			}
+			else {
+				ambientSelected = true;
+				cardLayout.show(card, "ambientInterfaceCard");
+			}
 		}
-		if (source == btnViewProgress){
+		if (source == btnQuit){
 			// put code to open viewProgress card once it's created
+			System.exit(0);
 		}
+		
 		// fitbitSetupCard buttons
 		if (source == btnFitbitSetup){
 			//This try/catch will run the data driver; data driver needs work
@@ -74,9 +89,7 @@ public class CardLayout_Interface implements ActionListener {
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
-			
-			
+			}	
 			// Change to fitbitVerification Card
 			cardLayout.show(card, "fitbitVerificationCard");
 		}
@@ -84,21 +97,21 @@ public class CardLayout_Interface implements ActionListener {
 		if (source == btnSubmit){
 			verCodeInput = textFieldVerification.getText();
 			DataDriver.sendVerification(verCodeInput);
+			fitbitIsSetup = true;
 			cardLayout.show(card, "homeCard");
+		}
+		// setupFitbitFirst Card's buttons
+		if (source == btnFitbitAccountSetup2){
+			cardLayout.show(card, "fitbitSetupCard");
 		}
 		// general buttons
 		if (source == btnBack) {
 			cardLayout.show(card, "homeCard");
 		}
 	}
-	/*
-	Timer SimpleTimer = new Timer(1000, new ActionListener(){
-	    @Override
-	    public void actionPerformed(ActionEvent e) {
-	        jLabel2.setText("test");
-	    }
-	});
-	*/
+	
+
+	
 	
 	public static void main(String[] args) {
 		JFrame frm = new JFrame(); // make new frame
@@ -129,21 +142,24 @@ public class CardLayout_Interface implements ActionListener {
 		homeCard.add(label);
 		
 		// * homeCard Buttons *
-		btnAccountSettings.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnAccountSettings.setBounds(135, 166, 178, 61);
-		homeCard.add(btnAccountSettings);
-		btnAccountSettings.addActionListener(AL);
+		btnFitbitAccountSetup.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnFitbitAccountSetup.setBounds(135, 166, 178, 61);
+		homeCard.add(btnFitbitAccountSetup);
+		btnFitbitAccountSetup.addActionListener(AL);
 
 		btnAmbientInterface.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAmbientInterface.setBounds(135, 239, 178, 61);
 		homeCard.add(btnAmbientInterface);
 		btnAmbientInterface.addActionListener(AL);
 		
-		btnViewProgress.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnViewProgress.setBounds(135, 312, 178, 61);
-		homeCard.add(btnViewProgress);
-		btnViewProgress.addActionListener(AL);
+
+		btnQuit.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnQuit.setBounds(135, 312, 178, 61);
+		homeCard.add(btnQuit);
+		btnQuit.addActionListener(AL);
 		
+		
+		/* Remove AmbientDevie On/Off button
 		JLabel lblAmbientDevice = new JLabel("Ambient Device");
 		lblAmbientDevice.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAmbientDevice.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -165,7 +181,28 @@ public class CardLayout_Interface implements ActionListener {
 		ButtonGroup bG = new ButtonGroup();
 		bG.add(rdbtnOn);
 		bG.add(rdbtnOff);
-
+		 */
+		
+		// *** Create setUpFitbitFirst Card ***
+		JPanel setupFitbitFirst = new JPanel();
+		setupFitbitFirst.setLayout(null); // set card layout
+		setupFitbitFirst.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		JTextArea textArea2 = new JTextArea(
+				"You need to setup your Fitbit account first.\n"
+				+ "Press the button to get to the Fitbit Setup page.");
+		textArea2.setBackground(SystemColor.control);
+		textArea2.setEditable(false);
+		textArea2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		textArea2.setBounds(70, 100, 309, 64);
+		setupFitbitFirst.add(textArea2);
+		
+		// setupFitbitFirst buttons
+		btnFitbitAccountSetup2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnFitbitAccountSetup2.setBounds(135, 166, 178, 61);
+		setupFitbitFirst.add(btnFitbitAccountSetup2);
+		btnFitbitAccountSetup2.addActionListener(AL);
+		
 		
 		// *** Create fitbitSetup Card ***
 		JPanel fitbitSetupCard = new JPanel();
@@ -243,23 +280,43 @@ public class CardLayout_Interface implements ActionListener {
 
 		//ambientImage = AmbientInterface.runInterface(90);
 		// * ambient image *
-		JLabel label2 = new JLabel("");
+		//JLabel label2 = new JLabel("");
 		//Adjust so that it selects the image that corresponds to how much of goal is completed. 
 		
 		
-		String ambientImage = "/fire/fire" + percentage + ".jpeg";
-		System.out.println(ambientImage);
-		Image logo2 = new ImageIcon(main.class.getResource(ambientImage)).getImage();
 		label2.setVerticalAlignment(JLabel.BOTTOM);
 		label2.setHorizontalAlignment(JLabel.CENTER);
-		label2.setIcon(new ImageIcon(logo2));
 		label2.setBounds(0, 0, 450, 469);
 		ambientInterfaceCard.add(label2);
+		
+
+		int timerTimeInMilliSeconds = 1000*5;
+	    javax.swing.Timer timer = new javax.swing.Timer(timerTimeInMilliSeconds, new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	        	if (percentage != ""){
+	        		// System.out.println("percentage is set"); //used for testing
+	        		// DataDriver.timer();
+	        		String ambientImage = "/fire/fire" + percentage + ".jpeg"; 
+		        	// System.out.println(ambientImage); // used for testing
+		        	Image logo2 = new ImageIcon(main.class.getResource(ambientImage)).getImage();
+		            label2.setIcon(new ImageIcon(logo2));
+	        	}
+	        	
+	        	// Used for testing
+	        	// System.out.println("TIMER WORKING");
+	        }
+	    });
+		         
+	    timer.start();    
+
+		
+	          
 		
 
 		// Add cards to panel
 		cardLayout.show(card, "homeCard"); // set frm parameters
 		card.add("homeCard", homeCard);
+		card.add("setupFitbitFirst", setupFitbitFirst);
 		card.add("fitbitSetupCard", fitbitSetupCard);
 		card.add("ambientInterfaceCard", ambientInterfaceCard);
 		card.add("fitbitVerificationCard", fitbitVerificationCard);		
@@ -269,7 +326,7 @@ public class CardLayout_Interface implements ActionListener {
 
 		// JFrame settings
 		frm.setVisible(true);
-		frm.setResizable(true);
+		frm.setResizable(false);
 		frm.setBounds(Variables.bound1, Variables.bound2, Variables.bound3,
 				Variables.bound4);
 		frm.setLocationRelativeTo(null);

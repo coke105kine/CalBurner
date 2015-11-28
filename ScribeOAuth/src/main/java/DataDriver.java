@@ -98,19 +98,18 @@ public class DataDriver {
 	        	@Override
 	            public void run () { // any code in this method will be performed periodically
 	            	countRuns++;
-	                if (countRuns >= 3) { // currently, code will update data 6 times
+	                if (countRuns >= 1000) { // currently, code will update data 6 times
 	                    timer.cancel();
 	                    timer.purge();
 	                    return;
 	                }
 	                
-	                
-	                gatherData(accessToken, service); // here's the data call to Fitbit
+	        		CardLayout_Interface.percentage = gatherData(accessToken, service); // here's the data call to Fitbit
 	 
 	                // The try/catch is currently being used as a test for period data updates
 	                // It will create a text file named "overnightTest.txt"
 	                // It just appends the "test", every time data updates
-	                
+	                /*
 	                try
 	                {
 	                    String filename= "overnightTest.txt";
@@ -122,6 +121,7 @@ public class DataDriver {
 	                {
 	                    System.err.println("IOException: " + ioe.getMessage());
 	                }
+	                */
 	            }   
 	        }; //ends TimerTask hourlyTask       
 	
@@ -137,7 +137,7 @@ public class DataDriver {
 		// It also parses through input received and prints
 		// the step stats and goals
 		// It calculates goal percentage and outputs to screen
-		public static void gatherData(Token accessToken, OAuthService service){
+		public static String gatherData(Token accessToken, OAuthService service){
 			//Grabbing daily goals
 	        OAuthRequest request1 = new OAuthRequest(Verb.GET, "https://api.fitbit.com/1/user/-/activities/goals/daily.json");
 	        service.signRequest(accessToken, request1);
@@ -164,20 +164,30 @@ public class DataDriver {
 	        sub2 = sub1.substring(0, index2);
 	        int stepStat = Integer.parseInt(sub2);
 	
+	        /* Used for testing
 	        System.out.println("\nYour steps today are: " + stepStat);
 	        System.out.println("Your steps goal is: " + stepGoal);
+	        */
 	        
 	        double doublePercentage = ((stepStat*1.0)/stepGoal)*100;
 	        int percentage = (int) doublePercentage;
 	        if (percentage > 100) percentage = 100;
-	        System.out.println("You are " + percentage + "% to meeting your goal.");
+	        // Used for testing
+	        //System.out.println("You are " + percentage + "% to meeting your goal.");
 	        
-	        p -= 20;
+	        
+	        // this whole part with variable p is just used for testing
+	        // since fitbit data does not change very often
+	        p -= 5;
 	         
 	        CardLayout_Interface.percentage = Integer.toString(p);
 	        		//Integer.toString(percentage);
 	        System.out.println("P =" + p);
 	        
+	        return Integer.toString(p); //used for testing
 	        
+	        
+	        // comment out line 191 if you want to test using lines 179-187
+	        //return Integer.toString(percentage);
 	}
 }
