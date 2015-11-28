@@ -340,9 +340,9 @@ public class CardLayout_Interface implements ActionListener {
 		
 		// Back button for Ambience Interface
 		btnBack2.setBackground(SystemColor.control);
-		Image backIcon2 = new ImageIcon(main.class.getResource("/backIcon_50x50.png")).getImage();
+		Image backIcon2 = new ImageIcon(main.class.getResource("/backIcon1.png")).getImage();
 		btnBack2.setIcon(new ImageIcon(backIcon2));
-		btnBack2.setBounds(0, 0, 67, 58);
+		btnBack2.setBounds(0, 0, 50, 50);
 		ambientInterfaceCard.add(btnBack2);
 		btnBack2.addActionListener(AL);
 
