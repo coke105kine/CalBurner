@@ -1,6 +1,5 @@
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -191,10 +190,17 @@ public class CardLayout_Interface implements ActionListener {
 		bG.add(rdbtnOff);
 		 */
 		
-		// *** Create setUpFitbitFirst Card ***
+		// *** Create setupFitbitFirst Card ***
 		JPanel setupFitbitFirst = new JPanel();
 		setupFitbitFirst.setLayout(null); // set card layout
 		setupFitbitFirst.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		// * setupFitbitFirst Card logo *
+		JLabel logolabel = new JLabel("");
+		Image logo1 = new ImageIcon(main.class.getResource("/logo1.png")).getImage();
+		logolabel.setIcon(new ImageIcon(logo1));
+		logolabel.setBounds(135, 6, 174, 148);
+		setupFitbitFirst.add(logolabel);
 		
 		JTextArea textArea2 = new JTextArea(
 				"You need to setup your Fitbit account first.\n"
@@ -202,12 +208,12 @@ public class CardLayout_Interface implements ActionListener {
 		textArea2.setBackground(SystemColor.control);
 		textArea2.setEditable(false);
 		textArea2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textArea2.setBounds(70, 100, 309, 64);
+		textArea2.setBounds(70, 210, 320, 45);
 		setupFitbitFirst.add(textArea2);
 		
 		// setupFitbitFirst buttons
 		btnFitbitAccountSetup2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnFitbitAccountSetup2.setBounds(135, 166, 178, 61);
+		btnFitbitAccountSetup2.setBounds(135, 300, 178, 61);
 		setupFitbitFirst.add(btnFitbitAccountSetup2);
 		btnFitbitAccountSetup2.addActionListener(AL);
 		
@@ -217,9 +223,16 @@ public class CardLayout_Interface implements ActionListener {
 		fitbitSetupCard.setLayout(null); // set card layout
 		fitbitSetupCard.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
+		// * fitbitSetupCard's logo *
+		JLabel logolabel1 = new JLabel("");
+		logolabel1.setIcon(new ImageIcon(logo));
+		logolabel1.setBounds(135, 80, 174, 148);
+		fitbitSetupCard.add(logolabel1);
+		
 		// * fitbitSetupCard's buttons *
 		btnFitbitSetup.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnFitbitSetup.setBounds(74, 234, 288, 50);
+		btnFitbitSetup.setBounds(80, 290, 288, 50);
+		btnFitbitSetup.setVerticalAlignment(JButton.CENTER);
 		fitbitSetupCard.add(btnFitbitSetup);
 		btnFitbitSetup.addActionListener(AL);
 		
@@ -236,7 +249,7 @@ public class CardLayout_Interface implements ActionListener {
 		textArea.setBackground(SystemColor.control);
 		textArea.setEditable(false);
 		textArea.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textArea.setBounds(74, 308, 309, 64);
+		textArea.setBounds(70, 350, 318, 44);
 		fitbitSetupCard.add(textArea);
 
 		JLabel lblFit = new JLabel("Fitbit Setup");
@@ -257,6 +270,12 @@ public class CardLayout_Interface implements ActionListener {
 		fitbitVerificationCard.setLayout(null);
 		fitbitVerificationCard.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
+		// * fitbitVerificationCard logo *
+		JLabel logolabel2 = new JLabel("");
+		logolabel2.setIcon(new ImageIcon(logo));
+		logolabel2.setBounds(135, 80, 174, 148);
+		fitbitVerificationCard.add(logolabel2);
+		
 		btnBack1.setBackground(SystemColor.control);
 		Image backIcon1 = new ImageIcon(main.class.getResource("/backIcon_50x50.png")).getImage();
 		btnBack1.setIcon(new ImageIcon(backIcon1));
@@ -265,8 +284,8 @@ public class CardLayout_Interface implements ActionListener {
 		btnBack1.addActionListener(AL);
 		
 		// initialize texfield before main so that it can be used outside of main
-		textFieldVerification.setToolTipText("Past verification code here");
-		textFieldVerification.setBounds(79, 278, 291, 37);
+		textFieldVerification.setToolTipText("Paste verification code here");
+		textFieldVerification.setBounds(79, 335, 291, 37);
 		fitbitVerificationCard.add(textFieldVerification);
 		textFieldVerification.setColumns(10);
 		
@@ -277,11 +296,11 @@ public class CardLayout_Interface implements ActionListener {
 		txtpnVerInstructions.setText("You will be directed to the Fitbit authorization page"
 				+ " in your web browser. Login and obtain your verification code."
 				+ " Copy-and-paste your code into the text field below.");
-		txtpnVerInstructions.setBounds(79, 158, 291, 112);
+		txtpnVerInstructions.setBounds(75, 250, 315, 80);
 		fitbitVerificationCard.add(txtpnVerInstructions);
 		
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnSubmit.setBounds(136, 334, 178, 61);
+		btnSubmit.setBounds(136, 375, 178, 61);
 		fitbitVerificationCard.add(btnSubmit);
 		btnSubmit.addActionListener(AL);
 		
@@ -335,8 +354,6 @@ public class CardLayout_Interface implements ActionListener {
 		         
 	    timer.start();    
 
-		
-	          
 		
 		// Back button for Ambience Interface
 		btnBack2.setBackground(SystemColor.control);
