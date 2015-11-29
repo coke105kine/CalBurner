@@ -50,8 +50,24 @@ public class main {
 	   /*
 	    System.out.println("Now go and authorize Scribe here:");
 	    System.out.println(authURL);*/
-	    System.out.println("And paste the verifier here");
-	    System.out.println("It's at the end of the url in your broswer.");
+	    // Anthony commented out 11/28/15
+	    //System.out.println("And paste the verifier here");
+	    //System.out.println("It's at the end of the url in your broswer.");
+	    //System.out.println(">>");
+	    System.out.println("Please enter the verification code by completing the following steps:");
+	    System.out.println("1) You will now be asked to log in to Fitbit.com using your account.");
+	    System.out.println("   If you do not have a Fitbit account, please create one first at Fitbit.com.");
+	    System.out.println("2) After logging in, you will be re-directed to CalBurner's website.");
+	    System.out.println("3) Obtain the verification code from our website.");
+	    System.out.println("   This code can be entered here in one of two ways:");
+	    System.out.println("   a) Highlight the letters and numbers after 'oauth_token =' in the address bar.");
+	    System.out.println("   b) Press 'Verifier ID' on the CalBurner webpage, and highlight the letters and numbers in the popup.");
+	    System.out.println("4) Copy the verification code by:");
+	    System.out.println("   a) Pressing 'Crtl + C' or Right-Clicking and selecting 'Copy'.");
+	    System.out.println("5) Return to this application and paste the code by:");
+	    System.out.println("   a) Clicking in the code entry area.");
+	    System.out.println("   b) Pressing 'Ctrl + V' or Right-Clicking and selecting 'Paste'.");
+	    System.out.println("");
 	    System.out.println(">>");
 	    	   
 	    
