@@ -25,7 +25,12 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 
 public class CardLayout_Interface implements ActionListener {
 	static CardLayout cardLayout; // make static CardLayout
@@ -135,11 +140,15 @@ public class CardLayout_Interface implements ActionListener {
 
 		
 		// CREATE CARDS HERE
+		
+		//Logo Colors:
+		//light blue: (133, 204, 241)
+		//dark blue: (19, 96, 171)
 
 		// *** Create Home Card ***
 		JPanel homeCard = new JPanel(); // make cardHome JPanel
 		homeCard.setLayout(null); // set card layout
-		homeCard.setBorder(new EmptyBorder(5, 5, 5, 5));
+		homeCard.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		homeCard.setBackground(Color.white);
 
 		// * homeCard logo *
@@ -152,17 +161,26 @@ public class CardLayout_Interface implements ActionListener {
 		// * homeCard Buttons *
 		btnFitbitAccountSetup.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnFitbitAccountSetup.setBounds(135, 166, 178, 61);
+		btnFitbitAccountSetup.setBackground(Color.white);
+		btnFitbitAccountSetup.setOpaque(true);
+		btnFitbitAccountSetup.setBorder(new LineBorder(new Color(133, 204, 241), 2));
 		homeCard.add(btnFitbitAccountSetup);
 		btnFitbitAccountSetup.addActionListener(AL);
 
 		btnAmbientInterface.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAmbientInterface.setBounds(135, 239, 178, 61);
+		btnAmbientInterface.setBackground(Color.white);
+		btnAmbientInterface.setOpaque(true);
+		btnAmbientInterface.setBorder(new LineBorder(new Color(133, 204, 241), 2));
 		homeCard.add(btnAmbientInterface);
 		btnAmbientInterface.addActionListener(AL);
 		
 
 		btnQuit.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnQuit.setBounds(135, 312, 178, 61);
+		btnQuit.setBackground(Color.white);
+		btnQuit.setOpaque(true);
+		btnQuit.setBorder(new LineBorder(new Color(133, 204, 241), 2));
 		homeCard.add(btnQuit);
 		btnQuit.addActionListener(AL);
 		
@@ -204,18 +222,24 @@ public class CardLayout_Interface implements ActionListener {
 		logolabel.setBounds(135, 6, 174, 148);
 		setupFitbitFirst.add(logolabel);
 		
-		JTextArea textArea2 = new JTextArea(
-				"You need to setup your Fitbit account first.\n"
+		JTextPane textArea2 = new JTextPane();
+		textArea2.setText("You need to setup your Fitbit account first. "
 				+ "Press the button to get to the Fitbit Setup page.");
 		textArea2.setBackground(SystemColor.control);
 		textArea2.setEditable(false);
 		textArea2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textArea2.setBounds(70, 210, 320, 45);
+		SimpleAttributeSet attribs = new SimpleAttributeSet();  
+		StyleConstants.setAlignment(attribs , StyleConstants.ALIGN_CENTER);  
+		textArea2.setParagraphAttributes(attribs,true);
 		setupFitbitFirst.add(textArea2);
 		
 		// setupFitbitFirst buttons
 		btnFitbitAccountSetup2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnFitbitAccountSetup2.setBounds(135, 300, 178, 61);
+		btnFitbitAccountSetup2.setBackground(Color.white);
+		btnFitbitAccountSetup2.setOpaque(true);
+		btnFitbitAccountSetup2.setBorder(new LineBorder(new Color(133, 204, 241), 2));
 		setupFitbitFirst.add(btnFitbitAccountSetup2);
 		btnFitbitAccountSetup2.addActionListener(AL);
 		
@@ -235,6 +259,9 @@ public class CardLayout_Interface implements ActionListener {
 		// * fitbitSetupCard's buttons *
 		btnFitbitSetup.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnFitbitSetup.setBounds(80, 290, 288, 50);
+		btnFitbitSetup.setBackground(Color.white);
+		btnFitbitSetup.setOpaque(true);
+		btnFitbitSetup.setBorder(new LineBorder(new Color(133, 204, 241), 2));
 		btnFitbitSetup.setVerticalAlignment(JButton.CENTER);
 		fitbitSetupCard.add(btnFitbitSetup);
 		btnFitbitSetup.addActionListener(AL);
@@ -246,13 +273,14 @@ public class CardLayout_Interface implements ActionListener {
 		fitbitSetupCard.add(btnBack);
 		btnBack.addActionListener(AL);
 
-		JTextArea textArea = new JTextArea(
-				"Clicking this button will open your web browser.\n"
-						+ "Make sure you have an internet connection.");
+		JTextPane textArea = new JTextPane();
+		textArea.setText("Clicking this button will open your web browser."
+				+ " Make sure you have an internet connection.");
 		textArea.setBackground(SystemColor.control);
 		textArea.setEditable(false);
 		textArea.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textArea.setBounds(70, 350, 318, 44);
+		textArea.setBounds(70, 350, 318, 44); 
+		textArea.setParagraphAttributes(attribs,true);
 		fitbitSetupCard.add(textArea);
 
 		JLabel lblFit = new JLabel("Fitbit Setup");
@@ -265,8 +293,6 @@ public class CardLayout_Interface implements ActionListener {
 		panel.setBackground(Color.GRAY);
 		panel.setBounds(66, 0, 368, 58);
 		fitbitSetupCard.add(panel);
-		
-		
 		
 		// *** Create fitbitVerification Card ***
 		JPanel fitbitVerificationCard = new JPanel(); // make cardHome JPanel
@@ -287,9 +313,10 @@ public class CardLayout_Interface implements ActionListener {
 		fitbitVerificationCard.add(btnBack1);
 		btnBack1.addActionListener(AL);
 		
-		// initialize texfield before main so that it can be used outside of main
+		// initialize textfield before main so that it can be used outside of main
 		textFieldVerification.setToolTipText("Paste verification code here");
 		textFieldVerification.setBounds(79, 335, 291, 37);
+		textFieldVerification.setBorder(new LineBorder(new Color(133, 204, 241), 2));
 		fitbitVerificationCard.add(textFieldVerification);
 		textFieldVerification.setColumns(10);
 		
@@ -301,10 +328,15 @@ public class CardLayout_Interface implements ActionListener {
 				+ " in your web browser. Login and obtain your verification code."
 				+ " Copy-and-paste your code into the text field below.");
 		txtpnVerInstructions.setBounds(75, 250, 315, 80);
+		txtpnVerInstructions.setEditable(false);
+		txtpnVerInstructions.setParagraphAttributes(attribs,true);
 		fitbitVerificationCard.add(txtpnVerInstructions);
 		
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnSubmit.setBounds(136, 375, 178, 61);
+		btnSubmit.setBackground(Color.white);
+		btnSubmit.setOpaque(true);
+		btnSubmit.setBorder(new LineBorder(new Color(133, 204, 241), 2));
 		fitbitVerificationCard.add(btnSubmit);
 		btnSubmit.addActionListener(AL);
 		
