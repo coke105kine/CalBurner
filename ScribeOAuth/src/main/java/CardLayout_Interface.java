@@ -365,7 +365,7 @@ public class CardLayout_Interface implements ActionListener {
 		JPanel ambientInterfaceCard = new JPanel(); // make cardHome JPanel
 		ambientInterfaceCard.setLayout(null); // set card layout
 		ambientInterfaceCard.setBorder(new EmptyBorder(5, 5, 5, 5));
-		ambientInterfaceCard.setBackground(Color.black);
+		ambientInterfaceCard.setBackground(Color.white);
 		
 
 		//ambientImage = AmbientInterface.runInterface(90);
@@ -386,7 +386,7 @@ public class CardLayout_Interface implements ActionListener {
 	        	if (percentage != ""){
 	        		// System.out.println("percentage is set"); //used for testing
 	        		// DataDriver.timer();
-	        		String ambientImage = "/fire/fire" + percentage + ".jpeg"; 
+	        		String ambientImage = "/fire/bfire" + percentage + ".jpeg"; 
 		        	// System.out.println(ambientImage); // used for testing
 		        	Image logo2 = new ImageIcon(main.class.getResource(ambientImage)).getImage();
 		            label2.setIcon(new ImageIcon(logo2));
@@ -402,8 +402,7 @@ public class CardLayout_Interface implements ActionListener {
 		
 		// Back button for Ambience Interface
 		btnBack2.setBackground(SystemColor.control);
-		Image backIcon1 = new ImageIcon(main.class.getResource("/backIcon1.png")).getImage();
-		btnBack2.setIcon(new ImageIcon(backIcon1));
+		btnBack2.setIcon(new ImageIcon(backIcon));
 		btnBack2.setBounds(0, 0, 50, 50);
 		ambientInterfaceCard.add(btnBack2);
 		btnBack2.addActionListener(AL);
