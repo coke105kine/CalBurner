@@ -1,14 +1,10 @@
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JTextArea;
 
 import java.awt.SystemColor;
 import java.awt.Font;
 
 import javax.swing.JTextPane;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
 import javax.swing.JButton;
 
 

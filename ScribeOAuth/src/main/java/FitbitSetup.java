@@ -1,11 +1,9 @@
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 
 import java.awt.Font;

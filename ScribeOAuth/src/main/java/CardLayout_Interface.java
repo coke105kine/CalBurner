@@ -1,31 +1,20 @@
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import javax.imageio.ImageIO;
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
@@ -61,6 +50,7 @@ public class CardLayout_Interface implements ActionListener {
 	static JButton btnBack = new JButton("");
 	static JButton btnBack1 = new JButton("");
 	static JButton btnBack2 = new JButton("");
+	static JButton btnBack3 = new JButton("");
 	
 	
 	// actionPerformed handles actions for button clicks
@@ -120,7 +110,10 @@ public class CardLayout_Interface implements ActionListener {
 		if (source == btnBack2) {
 			cardLayout.show(card, "homeCard");
 		}
-	}
+		if (source == btnBack3) {
+			cardLayout.show(card, "setupFitbitFirst");
+		}
+		}
 	
 
 	
@@ -219,7 +212,7 @@ public class CardLayout_Interface implements ActionListener {
 		JLabel logolabel = new JLabel("");
 		Image logo1 = new ImageIcon(main.class.getResource("/logo1.png")).getImage();
 		logolabel.setIcon(new ImageIcon(logo1));
-		logolabel.setBounds(135, 6, 174, 148);
+		logolabel.setBounds(135, 80, 174, 148);
 		setupFitbitFirst.add(logolabel);
 		
 		JTextPane textArea2 = new JTextPane();
@@ -228,7 +221,7 @@ public class CardLayout_Interface implements ActionListener {
 		textArea2.setBackground(SystemColor.control);
 		textArea2.setEditable(false);
 		textArea2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textArea2.setBounds(70, 210, 320, 45);
+		textArea2.setBounds(70, 260, 320, 45);
 		SimpleAttributeSet attribs = new SimpleAttributeSet();  
 		StyleConstants.setAlignment(attribs , StyleConstants.ALIGN_CENTER);  
 		textArea2.setParagraphAttributes(attribs,true);
@@ -236,12 +229,30 @@ public class CardLayout_Interface implements ActionListener {
 		
 		// setupFitbitFirst buttons
 		btnFitbitAccountSetup2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnFitbitAccountSetup2.setBounds(135, 300, 178, 61);
+		btnFitbitAccountSetup2.setBounds(135, 330, 178, 61);
 		btnFitbitAccountSetup2.setBackground(Color.white);
 		btnFitbitAccountSetup2.setOpaque(true);
 		btnFitbitAccountSetup2.setBorder(new LineBorder(new Color(133, 204, 241), 2));
 		setupFitbitFirst.add(btnFitbitAccountSetup2);
 		btnFitbitAccountSetup2.addActionListener(AL);
+		
+		btnBack.setBackground(SystemColor.control);
+		Image backIcon = new ImageIcon(main.class.getResource("/backIcon_50x50.png")).getImage();
+		btnBack.setIcon(new ImageIcon(backIcon));
+		btnBack.setBounds(0, 0, 67, 58);
+		setupFitbitFirst.add(btnBack);
+		btnBack.addActionListener(AL);
+		
+		JLabel lblFit2 = new JLabel("Setup Fitbit First");
+		lblFit2.setBackground(Color.WHITE);
+		lblFit2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblFit2.setBounds(74, 11, 120, 35);
+		setupFitbitFirst.add(lblFit2);
+
+		JPanel panel2 = new JPanel();
+		panel2.setBackground(new Color(133, 204, 241));
+		panel2.setBounds(66, 0, 368, 58);
+		setupFitbitFirst.add(panel2);
 		
 		
 		// *** Create fitbitSetup Card ***
@@ -266,12 +277,12 @@ public class CardLayout_Interface implements ActionListener {
 		fitbitSetupCard.add(btnFitbitSetup);
 		btnFitbitSetup.addActionListener(AL);
 		
-		btnBack.setBackground(SystemColor.control);
-		Image backIcon = new ImageIcon(main.class.getResource("/backIcon_50x50.png")).getImage();
-		btnBack.setIcon(new ImageIcon(backIcon));
-		btnBack.setBounds(0, 0, 67, 58);
-		fitbitSetupCard.add(btnBack);
-		btnBack.addActionListener(AL);
+		btnBack3.setBackground(SystemColor.control);
+		Image backIcon3 = new ImageIcon(main.class.getResource("/backIcon_50x50.png")).getImage();
+		btnBack3.setIcon(new ImageIcon(backIcon3));
+		btnBack3.setBounds(0, 0, 67, 58);
+		fitbitSetupCard.add(btnBack3);
+		btnBack3.addActionListener(AL);
 
 		JTextPane textArea = new JTextPane();
 		textArea.setText("Clicking this button will open your web browser."
@@ -290,7 +301,7 @@ public class CardLayout_Interface implements ActionListener {
 		fitbitSetupCard.add(lblFit);
 
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.GRAY);
+		panel.setBackground(new Color(133, 204, 241));
 		panel.setBounds(66, 0, 368, 58);
 		fitbitSetupCard.add(panel);
 		
@@ -347,7 +358,7 @@ public class CardLayout_Interface implements ActionListener {
 		fitbitVerificationCard.add(lblFit1);
 
 		JPanel panel1 = new JPanel();
-		panel1.setBackground(Color.GRAY);
+		panel1.setBackground(new Color(133, 204, 241));
 		panel1.setBounds(66, 0, 368, 58);
 		fitbitVerificationCard.add(panel1);
 		

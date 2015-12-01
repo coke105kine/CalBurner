@@ -1,7 +1,4 @@
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Scanner;
@@ -17,7 +14,6 @@ import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
 
 import java.awt.Desktop; 	//used to open web browser
-import java.net.URI; 		//used to open web browser
 
 public class DataDriver {
 		private static Token requestToken;
