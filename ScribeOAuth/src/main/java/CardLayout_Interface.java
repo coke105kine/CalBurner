@@ -140,6 +140,7 @@ public class CardLayout_Interface implements ActionListener {
 		JPanel homeCard = new JPanel(); // make cardHome JPanel
 		homeCard.setLayout(null); // set card layout
 		homeCard.setBorder(new EmptyBorder(5, 5, 5, 5));
+		homeCard.setBackground(Color.white);
 
 		// * homeCard logo *
 		JLabel label = new JLabel("");
@@ -194,6 +195,7 @@ public class CardLayout_Interface implements ActionListener {
 		JPanel setupFitbitFirst = new JPanel();
 		setupFitbitFirst.setLayout(null); // set card layout
 		setupFitbitFirst.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setupFitbitFirst.setBackground(Color.white);
 		
 		// * setupFitbitFirst Card logo *
 		JLabel logolabel = new JLabel("");
@@ -222,6 +224,7 @@ public class CardLayout_Interface implements ActionListener {
 		JPanel fitbitSetupCard = new JPanel();
 		fitbitSetupCard.setLayout(null); // set card layout
 		fitbitSetupCard.setBorder(new EmptyBorder(5, 5, 5, 5));
+		fitbitSetupCard.setBackground(Color.white);
 		
 		// * fitbitSetupCard's logo *
 		JLabel logolabel1 = new JLabel("");
@@ -269,6 +272,7 @@ public class CardLayout_Interface implements ActionListener {
 		JPanel fitbitVerificationCard = new JPanel(); // make cardHome JPanel
 		fitbitVerificationCard.setLayout(null);
 		fitbitVerificationCard.setBorder(new EmptyBorder(5, 5, 5, 5));
+		fitbitVerificationCard.setBackground(Color.white);
 		
 		// * fitbitVerificationCard logo *
 		JLabel logolabel2 = new JLabel("");
