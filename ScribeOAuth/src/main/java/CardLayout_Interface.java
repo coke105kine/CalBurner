@@ -251,7 +251,7 @@ public class CardLayout_Interface implements ActionListener {
 
 		JPanel panel2 = new JPanel();
 		panel2.setBackground(new Color(133, 204, 241));
-		panel2.setBounds(66, 0, 368, 58);
+		panel2.setBounds(66, 0, 382, 58);
 		setupFitbitFirst.add(panel2);
 		
 		
@@ -301,7 +301,7 @@ public class CardLayout_Interface implements ActionListener {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(133, 204, 241));
-		panel.setBounds(66, 0, 368, 58);
+		panel.setBounds(66, 0, 382, 58);
 		fitbitSetupCard.add(panel);
 		
 		// *** Create fitbitVerification Card ***
@@ -357,7 +357,7 @@ public class CardLayout_Interface implements ActionListener {
 
 		JPanel panel1 = new JPanel();
 		panel1.setBackground(new Color(133, 204, 241));
-		panel1.setBounds(66, 0, 368, 58);
+		panel1.setBounds(66, 0, 382, 58);
 		fitbitVerificationCard.add(panel1);
 		
 		
