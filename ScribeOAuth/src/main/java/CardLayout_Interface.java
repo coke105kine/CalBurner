@@ -111,7 +111,7 @@ public class CardLayout_Interface implements ActionListener {
 			cardLayout.show(card, "homeCard");
 		}
 		if (source == btnBack3) {
-			cardLayout.show(card, "setupFitbitFirst");
+			cardLayout.show(card, "homeCard");
 		}
 		}
 	
@@ -278,8 +278,7 @@ public class CardLayout_Interface implements ActionListener {
 		btnFitbitSetup.addActionListener(AL);
 		
 		btnBack3.setBackground(SystemColor.control);
-		Image backIcon3 = new ImageIcon(main.class.getResource("/backIcon_50x50.png")).getImage();
-		btnBack3.setIcon(new ImageIcon(backIcon3));
+		btnBack3.setIcon(new ImageIcon(backIcon));
 		btnBack3.setBounds(0, 0, 67, 58);
 		fitbitSetupCard.add(btnBack3);
 		btnBack3.addActionListener(AL);
@@ -318,8 +317,7 @@ public class CardLayout_Interface implements ActionListener {
 		fitbitVerificationCard.add(logolabel2);
 		
 		btnBack1.setBackground(SystemColor.control);
-		Image backIcon1 = new ImageIcon(main.class.getResource("/backIcon_50x50.png")).getImage();
-		btnBack1.setIcon(new ImageIcon(backIcon1));
+		btnBack1.setIcon(new ImageIcon(backIcon));
 		btnBack1.setBounds(0, 0, 67, 58);
 		fitbitVerificationCard.add(btnBack1);
 		btnBack1.addActionListener(AL);
@@ -404,8 +402,8 @@ public class CardLayout_Interface implements ActionListener {
 		
 		// Back button for Ambience Interface
 		btnBack2.setBackground(SystemColor.control);
-		Image backIcon2 = new ImageIcon(main.class.getResource("/backIcon1.png")).getImage();
-		btnBack2.setIcon(new ImageIcon(backIcon2));
+		Image backIcon1 = new ImageIcon(main.class.getResource("/backIcon1.png")).getImage();
+		btnBack2.setIcon(new ImageIcon(backIcon1));
 		btnBack2.setBounds(0, 0, 50, 50);
 		ambientInterfaceCard.add(btnBack2);
 		btnBack2.addActionListener(AL);
