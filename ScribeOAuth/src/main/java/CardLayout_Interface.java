@@ -27,6 +27,7 @@ public class CardLayout_Interface implements ActionListener {
 	public static String verCodeInput = "";
 	public static boolean ambientSelected = false;
 	public static boolean fitbitIsSetup = false;
+	public static int percentImage = 100;
 
 	// textfield for fitbitVerificationPage
 	static JTextField textFieldVerification = new JTextField();
@@ -153,7 +154,7 @@ public class CardLayout_Interface implements ActionListener {
 		
 		// * homeCard Buttons *
 		btnFitbitAccountSetup.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnFitbitAccountSetup.setBounds(135, 166, 178, 61);
+		btnFitbitAccountSetup.setBounds(135, 180, 178, 61);
 		btnFitbitAccountSetup.setBackground(Color.white);
 		btnFitbitAccountSetup.setOpaque(true);
 		btnFitbitAccountSetup.setBorder(new LineBorder(new Color(133, 204, 241), 2));
@@ -161,7 +162,7 @@ public class CardLayout_Interface implements ActionListener {
 		btnFitbitAccountSetup.addActionListener(AL);
 
 		btnAmbientInterface.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnAmbientInterface.setBounds(135, 239, 178, 61);
+		btnAmbientInterface.setBounds(135, 270, 178, 61);
 		btnAmbientInterface.setBackground(Color.white);
 		btnAmbientInterface.setOpaque(true);
 		btnAmbientInterface.setBorder(new LineBorder(new Color(133, 204, 241), 2));
@@ -170,7 +171,7 @@ public class CardLayout_Interface implements ActionListener {
 		
 
 		btnQuit.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnQuit.setBounds(135, 312, 178, 61);
+		btnQuit.setBounds(135, 360, 178, 61);
 		btnQuit.setBackground(Color.white);
 		btnQuit.setOpaque(true);
 		btnQuit.setBorder(new LineBorder(new Color(133, 204, 241), 2));
@@ -379,14 +380,14 @@ public class CardLayout_Interface implements ActionListener {
 		label2.setBounds(0, 0, 450, 469);
 		ambientInterfaceCard.add(label2);
 		
-
 		int timerTimeInMilliSeconds = 1000*5;
 	    javax.swing.Timer timer = new javax.swing.Timer(timerTimeInMilliSeconds, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	        	if (percentage != ""){
 	        		// System.out.println("percentage is set"); //used for testing
 	        		// DataDriver.timer();
-	        		String ambientImage = "/fire/bfire" + percentage + ".jpeg"; 
+	        		percentImage = 100 - Integer.parseInt(percentage);
+	        		String ambientImage = "/fire/bfire" + percentImage + ".jpeg"; 
 		        	// System.out.println(ambientImage); // used for testing
 		        	Image logo2 = new ImageIcon(main.class.getResource(ambientImage)).getImage();
 		            label2.setIcon(new ImageIcon(logo2));
