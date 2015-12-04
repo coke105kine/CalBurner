@@ -387,7 +387,7 @@ public class CardLayout_Interface implements ActionListener {
 	        		// System.out.println("percentage is set"); //used for testing
 	        		// DataDriver.timer();
 	        		percentImage = 100 - Integer.parseInt(percentage);
-	        		String ambientImage = "/fire/bfire" + percentImage + ".jpeg"; 
+	        		String ambientImage = "/fire/bfire" + percentage + ".jpeg"; 
 		        	// System.out.println(ambientImage); // used for testing
 		        	Image logo2 = new ImageIcon(main.class.getResource(ambientImage)).getImage();
 		            label2.setIcon(new ImageIcon(logo2));
