@@ -21,7 +21,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
-public class CardLayout_Interface implements ActionListener {
+public class testing implements ActionListener {
 	static CardLayout cardLayout; // make static CardLayout
 	static JPanel card = new JPanel(); // make a static CardLayout
 	public static String verCodeInput = "";
@@ -384,14 +384,11 @@ public class CardLayout_Interface implements ActionListener {
 	    javax.swing.Timer timer = new javax.swing.Timer(timerTimeInMilliSeconds, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	        	if (percentage != ""){
-	        		String ambientImage = "";
-	        		if (Integer.parseInt(percentage) <= 0){
-		            	ambientImage = "/congrats4.jpg";
+	        		percentImage = 100 - Integer.parseInt(percentage);
+	        		String ambientImage = "/fire/bfire" + percentage + ".jpeg"; 
+		            if (percentage == "0"){
+		            	ambientImage = "/fire/congrats.gif";
 		            }
-	        		else{
-		        		percentImage = 100 - Integer.parseInt(percentage);
-		        		ambientImage = "/fire/bfire" + percentage + ".jpeg"; 
-	        		}
 		        	Image logo2 = new ImageIcon(main.class.getResource(ambientImage)).getImage();
 		            label2.setIcon(new ImageIcon(logo2));
 	        	}
