@@ -314,7 +314,7 @@ public class CardLayout_Interface implements ActionListener {
 		// * fitbitVerificationCard logo *
 		JLabel logolabel2 = new JLabel("");
 		logolabel2.setIcon(new ImageIcon(logo));
-		logolabel2.setBounds(135, 80, 174, 148);
+		logolabel2.setBounds(135, 70, 174, 148);
 		fitbitVerificationCard.add(logolabel2);
 		
 		btnBack1.setBackground(SystemColor.control);
@@ -337,7 +337,7 @@ public class CardLayout_Interface implements ActionListener {
 		txtpnVerInstructions.setText("You will be directed to the Fitbit authorization page"
 				+ " in your web browser. Login and obtain your verification code."
 				+ " Copy-and-paste your code into the text field below.");
-		txtpnVerInstructions.setBounds(75, 250, 315, 80);
+		txtpnVerInstructions.setBounds(75, 230, 315, 80);
 		txtpnVerInstructions.setEditable(false);
 		txtpnVerInstructions.setParagraphAttributes(attribs,true);
 		fitbitVerificationCard.add(txtpnVerInstructions);
