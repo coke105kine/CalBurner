@@ -219,7 +219,7 @@ public class CardLayout_Interface implements ActionListener {
 		JTextPane textArea2 = new JTextPane();
 		textArea2.setText("You need to setup your Fitbit account first. "
 				+ "Press the button to get to the Fitbit Setup page.");
-		textArea2.setBackground(SystemColor.control);
+		textArea2.setBackground(Color.white);
 		textArea2.setEditable(false);
 		textArea2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textArea2.setBounds(70, 260, 320, 45);
@@ -287,7 +287,7 @@ public class CardLayout_Interface implements ActionListener {
 		JTextPane textArea = new JTextPane();
 		textArea.setText("Clicking this button will open your web browser."
 				+ " Make sure you have an internet connection.");
-		textArea.setBackground(SystemColor.control);
+		textArea.setBackground(Color.white);
 		textArea.setEditable(false);
 		textArea.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textArea.setBounds(70, 350, 318, 44); 
@@ -332,7 +332,7 @@ public class CardLayout_Interface implements ActionListener {
 		
 		// ***THIS TEXTPANE SHOULD PROBALBY HAVE CENTERED TEXT. NEED TO FIGURE OUT HOW!
 		JTextPane txtpnVerInstructions = new JTextPane();
-		txtpnVerInstructions.setBackground(SystemColor.control);
+		txtpnVerInstructions.setBackground(Color.white);
 		txtpnVerInstructions.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtpnVerInstructions.setText("You will be directed to the Fitbit authorization page"
 				+ " in your web browser. Login and obtain your verification code."
